@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "diner-server": "diner-finder-fb379",
+    "default": "diner-finder-fb379"
+  }
+}
