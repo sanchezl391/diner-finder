@@ -10,6 +10,11 @@ module.exports = (app => {
         })
     );
     
+    app.get('/api/logout', (req, res) => {
+        req.logout();
+        res.send(req.user);
+    });
+
     app.get(
         '/auth/google/callback',
         passport.authenticate('google'),
@@ -18,13 +23,16 @@ module.exports = (app => {
             // res.send(req.user);
             req.logIn(req.user, function (err) {
                 if (err) { return next(err); }
-                res.redirect('/auth/loggedin');
+                res.redirect('/auth/current_user');
             });
         }
     );
     
-    app.get('/auth/loggedin', (req, res) => {
-        res.send('You are logged in, this is your id - ' + req.user.dataValues.id);
+    app.get('/auth/current_user', (req, res) => {
+        if(req.user)
+            res.send('this is your id - ' + req.user.dataValues.id);
+        else
+            res.send('not logged in :(');
     });
     console.log('end of auth routes');
 });
