@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './Containers/App';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import App from './Containers/App';
 import reducers from './reducers';
+import './index.scss';
 
 const store = createStore(reducers, {}, applyMiddleware());
 
