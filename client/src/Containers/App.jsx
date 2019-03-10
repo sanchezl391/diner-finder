@@ -1,22 +1,36 @@
-import React, { Component } from 'react';
-import './App.scss';
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import { faIgloo } from '@fortawesome/free-solid-svg-icons'
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-// library.add(faIgloo)
-import Authentication from '../Components/Authentication/Authentication';
+// const Header = () => {
+//     return (
+//         <h2>header</h2>
+//     );
+// };
 
-class App extends Component {
-  render() {
+// const Dashboard = () => {
+//     return (
+//         <h2>Dashboard</h2>
+//     );
+// };
+
+// const SurveyNew = () => {
+//     return (
+//         <h2>SurveyNew</h2>
+//     );
+// };
+
+const App = () => {
     return (
-      <div className="App">
-        {/* <Authentication /> */}
-      </div>
+        <div className="app-container">
+            <BrowserRouter>
+                <div>
+                    <Route path="/" exact component={Header} />
+                    {/* <Route path="/new" exact component={SurveyNew} />
+                    <Route path="/dashboard" component={Dashboard} /> */}
+                </div>
+            </BrowserRouter>
+        </div>
     );
-  }
-  componentDidMount() {
-    fetch('http://localhost:5000/auth/google', {credentials: 'include'});
-  }
 }
 
 export default App;
