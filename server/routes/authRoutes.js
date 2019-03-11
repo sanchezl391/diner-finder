@@ -12,27 +12,22 @@ module.exports = (app => {
     
     app.get('/api/logout', (req, res) => {
         req.logout();
-        res.send(req.user);
+        res.redirect('/');
     });
 
     app.get(
         '/auth/google/callback',
         passport.authenticate('google'),
-        (req, res, next) => {
-            // console.log('is authenticated:', req.isAuthenticated());
-            // res.send(req.user);
-            req.logIn(req.user, function (err) {
-                if (err) { return next(err); }
-                res.redirect('/auth/current_user');
-            });
+        (req, res) => {
+            res.redirect('/find');
         }
     );
     
-    app.get('/auth/current_user', (req, res) => {
+    app.get('/api/current_user', (req, res) => {
         if(req.user)
-            res.send('this is your id - ' + req.user.dataValues.id);
+            res.send(req.user.dataValues);
         else
-            res.send('not logged in :(');
+            res.send('');
     });
     console.log('end of auth routes');
 });
