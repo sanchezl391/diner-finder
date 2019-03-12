@@ -3,6 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Header from '../Components/Header/Header';
+import landing from '../Components/landing/landing';
+import find from '../Components/find/find';
 
 class App extends Component {
     componentDidMount() {
@@ -15,7 +17,8 @@ class App extends Component {
                 <BrowserRouter>
                     <div>
                         <Header />
-                        {/* <Route path="/" exact component={Header} /> */}
+                        <Route path="/" exact component={landing} />
+                        <Route path="/find" exact component={find} />
                     </div>
                 </BrowserRouter>
             </div>

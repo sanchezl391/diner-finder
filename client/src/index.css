@@ -10,3 +10,20 @@ a {
     text-decoration: none;
     color: black;
 }
+
+.button-hover:hover{
+    background: #f1f2f6;
+    cursor:pointer;
+}
+
+.lg-txt {font-size: 25px;}
+.md-txt{font-size: 22px;}
+.sm-txt{font-size: 15px;}
+
+.body-container {
+    margin-left: 10%;
+    text-align: center;
+    display: flex;
+    align-self: center;
+    width:80%;
+}

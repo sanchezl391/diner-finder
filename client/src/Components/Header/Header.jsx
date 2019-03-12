@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Header.scss';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Header extends Component{
     renderContent() {
@@ -10,17 +11,25 @@ class Header extends Component{
                 return;
             case false:
                 return (
-                    <a href="/auth/google">
-                        <div className="log-in-container">
-                            <img alt="google logo" src="https://img.icons8.com/color/25/000000/google-logo.png"></img>
-                            <p>Sign in with Google</p> 
-                        </div>   
-                    </a>
+                    <div className="buttons-container">
+                        <Link to='/find'>
+                            <button 
+                                className='guest-btn button-hover sm-txt'
+                                onClick={this.props.onGuestContinue}>
+                                    Continue as guest
+                            </button>
+                        </Link>
+                        <a href="/auth/google">
+                            <div className="log-in-container button-hover sm-txt">
+                                <img alt="google logo" src="https://img.icons8.com/color/25/000000/google-logo.png"></img>
+                                <p>Sign in with Google</p> 
+                            </div>   
+                        </a>
+                    </div>
                 );
-              
             default: //logged in
                 return (
-                    <a href="/api/logout"><p>Logout</p></a>
+                    <a className="logout-btn button-hover sm-txt" href="/api/logout"><p>Logout</p></a>
                 );
         }
     }
@@ -28,15 +37,21 @@ class Header extends Component{
     render() {
         return (
             <div className="header-container">
-                <h2>Diner Finder</h2>                
+                <Link to="/"><h2>Diner Finder</h2></Link>
                { this.renderContent() }
             </div>
         );
     }
 }
 
+const mapDispathToProps = dispatch => {
+    return {
+        onGuestContinue: () => dispatch({type: 'GUEST'})
+    };
+};
+
 function mapStateToProps({ auth }){
     return { auth };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispathToProps)(Header);
